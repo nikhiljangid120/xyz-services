@@ -48,5 +48,5 @@ nedb.find({}).sort({ timestamp: -1 }).limit(5).exec((err, docs) => {
         }
         console.log('\n--- Verification Complete ---');
     }
-    
+
 });
