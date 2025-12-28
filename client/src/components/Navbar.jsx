@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Rocket } from 'lucide-react';
-import '../global.css';
+import { Menu, X, Sun, Moon, Link as LinkIcon } from 'lucide-react';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [theme, setTheme] = useState('light');
     const location = useLocation();
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
+        document.documentElement.setAttribute('data-theme', theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme(prev => prev === 'light' ? 'dark' : 'light');
+    };
+
+    useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -19,95 +25,81 @@ const Navbar = () => {
     const navLinks = [
         { name: 'Home', path: '/' },
         { name: 'Services', path: '/services' },
-        { name: 'About Us', path: '/about' },
+        { name: 'About', path: '/about' },
         { name: 'Contact', path: '/contact' },
     ];
 
-    const toggleMenu = () => setIsOpen(!isOpen);
-
     return (
         <nav style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            zIndex: 1000,
+            position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
             height: 'var(--nav-height)',
-            background: scrolled ? 'rgba(15, 23, 42, 0.9)' : 'transparent',
-            backdropFilter: scrolled ? 'blur(10px)' : 'none',
-            borderBottom: scrolled ? '1px solid rgba(255,255,255,0.05)' : 'none',
-            transition: 'all 0.4s ease'
+            background: scrolled ? 'var(--nav-bg)' : 'transparent',
+            borderBottom: scrolled ? '1px solid var(--card-border)' : 'none',
+            backdropFilter: scrolled ? 'blur(8px)' : 'none',
+            transition: 'all 0.3s ease',
+            color: 'var(--nav-text)' // Explicitly set text color
         }}>
             <div className="container" style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                {/* Logo */}
-                <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '1.5rem', fontWeight: 'bold' }}>
-                    <Rocket color="var(--accent-primary)" size={28} />
-                    <span>XYZ <span className="text-gradient">Tech</span></span>
+                <Link to="/" style={{ fontSize: '1.4rem', fontWeight: '700', color: 'var(--nav-text)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    XYZ<span style={{ color: 'var(--accent-primary)' }}>Tech</span>
                 </Link>
 
                 {/* Desktop Nav */}
                 <div className="desktop-nav" style={{ display: 'flex', gap: '30px', alignItems: 'center' }}>
                     {navLinks.map((link) => (
                         <Link
-                            key={link.name}
-                            to={link.path}
+                            key={link.name} to={link.path}
                             style={{
-                                color: location.pathname === link.path ? 'var(--accent-primary)' : 'var(--text-secondary)',
+                                color: location.pathname === link.path ? 'var(--accent-primary)' : 'var(--nav-text)',
                                 fontWeight: 500,
-                                position: 'relative'
+                                fontSize: '0.95rem'
                             }}
-                            className="nav-link"
                         >
                             {link.name}
                         </Link>
                     ))}
-                    <Link to="/contact" className="btn btn-primary" style={{ padding: '8px 24px', fontSize: '0.9rem' }}>
-                        Get Started
-                    </Link>
+                    <button onClick={toggleTheme} style={{ color: 'var(--nav-text)', padding: '8px', borderRadius: '50%', border: '1px solid var(--card-border)' }}>
+                        {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+                    </button>
+                    <Link to="/contact" className="btn btn-primary" style={{ padding: '8px 20px', fontSize: '0.9rem' }}>Get Started</Link>
                 </div>
 
-                {/* Mobile Toggle */}
-                <button className="mobile-toggle" onClick={toggleMenu} style={{ color: 'white' }}>
-                    {isOpen ? <X size={28} /> : <Menu size={28} />}
-                </button>
+                {/* Mobile Toggle & Theme */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }} className="mobile-controls">
+                    <button onClick={toggleTheme} style={{ color: 'var(--nav-text)', padding: '8px' }}>
+                        {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+                    </button>
+                    <button onClick={() => setIsOpen(!isOpen)} style={{ color: 'var(--nav-text)' }}>
+                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                </div>
             </div>
 
             {/* Mobile Menu */}
             {isOpen && (
                 <div style={{
-                    position: 'absolute',
-                    top: 'var(--nav-height)',
-                    left: 0,
-                    right: 0,
-                    background: 'var(--bg-secondary)',
-                    padding: '20px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '20px',
-                    borderBottom: '1px solid rgba(255,255,255,0.1)'
+                    position: 'absolute', top: '70px', left: 0, right: 0,
+                    background: 'var(--bg-primary)', padding: '20px',
+                    display: 'flex', flexDirection: 'column', gap: '15px',
+                    borderBottom: '1px solid var(--card-border)',
+                    boxShadow: 'var(--shadow-md)'
                 }}>
                     {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            to={link.path}
-                            onClick={() => setIsOpen(false)}
-                            style={{ fontSize: '1.1rem', color: 'white' }}
-                        >
+                        <Link key={link.name} to={link.path} onClick={() => setIsOpen(false)} style={{ fontSize: '1.1rem', color: 'var(--text-primary)', padding: '10px 0', borderBottom: '1px solid var(--card-border)' }}>
                             {link.name}
                         </Link>
                     ))}
+                    <Link to="/contact" className="btn btn-primary" onClick={() => setIsOpen(false)} style={{ justifyContent: 'center' }}>Get Started</Link>
                 </div>
             )}
-
             <style>{`
-        .mobile-toggle { display: none; }
+        .mobile-controls { display: none !important; }
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
-          .mobile-toggle { display: block; }
+          .mobile-controls { display: flex !important; }
         }
       `}</style>
         </nav>
     );
 };
-
 export default Navbar;

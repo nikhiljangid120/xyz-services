@@ -1,136 +1,98 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { replace, ArrowRight, Shield, Zap, Globe, Users } from 'lucide-react';
+import { CheckCircle, Zap, Shield, BarChart, Globe, Server, Cpu, Wifi } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const Section = ({ children, bg = 'transparent', delay = 0 }) => (
-    <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8, delay }}
-        className="section"
-        style={{ background: bg }}
-    >
+const Section = ({ children, bg = 'transparent' }) => (
+    <section className="section" style={{ background: bg }}>
         <div className="container">{children}</div>
-    </motion.section>
+    </section>
 );
 
 const Home = () => {
     return (
         <div className="home-page">
-            {/* 1. Hero Section */}
-            <section style={{ height: '100vh', display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'absolute', top: '-20%', right: '-10%', width: '50vw', height: '50vw', background: 'var(--accent-primary)', filter: 'blur(150px)', opacity: '0.2', borderRadius: '50%' }} />
-                <div style={{ position: 'absolute', bottom: '-20%', left: '-10%', width: '40vw', height: '40vw', background: 'var(--accent-secondary)', filter: 'blur(150px)', opacity: '0.2', borderRadius: '50%' }} />
-
-                <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        style={{ fontSize: 'clamp(3rem, 5vw, 5rem)', marginBottom: '20px', lineHeight: '1.1' }}
-                    >
-                        Building the <br /> <span className="text-gradient">Digital Future</span>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', maxWidth: '600px', marginBottom: '40px' }}
-                    >
-                        XYZ Technologies delivers enterprise-grade software solutions with cutting-edge innovation and premium design.
-                    </motion.p>
+            {/* 1. Hero Section with Digital Visualization (No Image) */}
+            <section style={{ paddingTop: '140px', paddingBottom: '100px', background: 'linear-gradient(to bottom, var(--bg-accent), var(--bg-primary))' }}>
+                <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
+                        transition={{ duration: 0.6 }}
                     >
-                        <Link to="/contact" className="btn btn-primary">Start Project <ArrowRight size={20} style={{ marginLeft: '10px' }} /></Link>
+                        <div style={{ fontWeight: '600', color: 'var(--accent-primary)', marginBottom: '15px', textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '1px' }}>
+                            Digital Innovation
+                        </div>
+                        <h1 style={{ fontSize: '3.5rem', marginBottom: '25px', color: 'var(--text-primary)', letterSpacing: '-1px' }}>
+                            Building the future <br /> of <span style={{ color: 'var(--accent-primary)' }}>connectivity.</span>
+                        </h1>
+                        <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', marginBottom: '35px', maxWidth: '540px' }}>
+                            We deliver enterprise-grade software solutions that drive growth. Simple, scalable, and secure.
+                        </p>
+                        <div style={{ display: 'flex', gap: '15px' }}>
+                            <Link to="/contact" className="btn btn-primary">Start Project</Link>
+                            <Link to="/services" className="btn btn-outline">Our Services</Link>
+                        </div>
+                    </motion.div>
+
+                    {/* Animated Graphic Replacement */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8 }}
+                        style={{ position: 'relative', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                    >
+                        {/* Abstract Orbiting Network */}
+                        <div style={{ position: 'absolute', width: '300px', height: '300px', borderRadius: '50%', border: '1px dashed var(--card-border)' }} />
+                        <div style={{ position: 'absolute', width: '450px', height: '450px', borderRadius: '50%', border: '1px solid var(--bg-accent)' }} />
+
+                        {/* Central Hub */}
+                        <div className="clean-card" style={{ zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', boxShadow: 'var(--shadow-lg)' }}>
+                            <Globe size={48} color="var(--accent-primary)" />
+                            <span style={{ fontWeight: 'bold' }}>Global Core</span>
+                        </div>
+
+                        {/* Floating Nodes */}
+                        <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', top: '20%', left: '10%' }} className="clean-card">
+                            <Server size={24} color="var(--text-secondary)" />
+                        </motion.div>
+
+                        <motion.div animate={{ y: [0, 20, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }} style={{ position: 'absolute', bottom: '20%', right: '10%' }} className="clean-card">
+                            <Cpu size={24} color="var(--accent-primary)" />
+                        </motion.div>
+
+                        <motion.div animate={{ x: [0, 15, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }} style={{ position: 'absolute', top: '50%', right: '0%' }} className="clean-card">
+                            <Wifi size={24} color="#10b981" />
+                        </motion.div>
+
+                        <motion.div animate={{ x: [0, -15, 0] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1.5 }} style={{ position: 'absolute', top: '10%', right: '30%' }} className="clean-card">
+                            <Shield size={24} color="#f59e0b" />
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>
 
-            {/* 2. Company Overview */}
-            <Section bg="var(--bg-secondary)">
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '50px', alignItems: 'center' }}>
-                    <div>
-                        <h2 style={{ fontSize: '2.5rem', marginBottom: '20px' }}>Who We Are</h2>
-                        <p style={{ color: 'var(--text-secondary)', marginBottom: '20px' }}>
-                            Founded in 2024, XYZ Technologies has rapidly evolved into a global leader in IT consulting and digital transformation. We blend technical expertise with creative strategy to solve complex business challenges.
-                        </p>
-                        <div style={{ display: 'flex', gap: '20px' }}>
-                            <div>
-                                <h3 className="text-gradient" style={{ fontSize: '2rem' }}>50+</h3>
-                                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Projects Delivered</p>
-                            </div>
-                            <div>
-                                <h3 className="text-gradient" style={{ fontSize: '2rem' }}>98%</h3>
-                                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Client Satisfaction</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="glass-card" style={{ height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <Globe size={100} color="var(--accent-primary)" style={{ opacity: 0.8 }} />
-                    </div>
-                </div>
-            </Section>
-
-            {/* 3. Services Preview */}
+            {/* 2. Services Grid (Unchanged) */}
             <Section>
-                <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '10px' }}>Our Services</h2>
-                    <p style={{ color: 'var(--text-secondary)' }}>Comprehensive solutions for forward-thinking companies.</p>
+                <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 60px' }}>
+                    <h2 style={{ fontSize: '2.5rem', marginBottom: '15px' }}>Tailored Solutions</h2>
+                    <p style={{ color: 'var(--text-secondary)' }}>Everything you need to scale your business in the modern digital landscape.</p>
                 </div>
+
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
                     {[
-                        { icon: <Zap />, title: 'Digital Transformation', desc: 'Modernize your legacy systems with cloud-native architectures.' },
-                        { icon: <Shield />, title: 'Cybersecurity', desc: 'Enterprise-grade protection for your data and infrastructure.' },
-                        { icon: <Users />, title: 'IT Consulting', desc: 'Strategic guidance to align technology with business goals.' }
+                        { icon: <Zap size={24} />, title: 'Digital Transformation', desc: 'Modernize workflows with cloud-native tech.' },
+                        { icon: <Shield size={24} />, title: 'Cyber Security', desc: 'Enterprise-grade protection for your data.' },
+                        { icon: <BarChart size={24} />, title: 'Data Analytics', desc: 'Actionable insights derived from your metrics.' }
                     ].map((s, i) => (
-                        <motion.div
-                            key={i}
-                            whileHover={{ y: -10 }}
-                            className="glass-card"
-                            style={{ padding: '30px' }}
-                        >
-                            <div style={{ color: 'var(--accent-primary)', marginBottom: '20px' }}>{s.icon}</div>
-                            <h3 style={{ marginBottom: '10px' }}>{s.title}</h3>
-                            <p style={{ color: 'var(--text-secondary)' }}>{s.desc}</p>
-                        </motion.div>
-                    ))}
-                </div>
-                <div style={{ textAlign: 'center', marginTop: '40px' }}>
-                    <Link to="/services" className="btn btn-outline">View All Services</Link>
-                </div>
-            </Section>
-
-            {/* 4. Value Proposition */}
-            <Section bg="var(--bg-secondary)">
-                <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '40px' }}>Why Choose XYZ?</h2>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px' }}>
-                        {[
-                            { title: 'Speed', desc: 'Rapid deployment cycles.' },
-                            { title: 'Quality', desc: 'Zero-compromise code standards.' },
-                            { title: 'Innovation', desc: 'Always using latest tech.' }
-                        ].map((v, i) => (
-                            <div key={i}>
-                                <h3 className="text-gradient" style={{ fontSize: '1.5rem', marginBottom: '10px' }}>{v.title}</h3>
-                                <p style={{ color: 'var(--text-secondary)' }}>{v.desc}</p>
+                        <div key={i} className="clean-card">
+                            <div style={{ width: '50px', height: '50px', background: 'var(--bg-accent)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--accent-primary)', marginBottom: '20px' }}>
+                                {s.icon}
                             </div>
-                        ))}
-                    </div>
-                </div>
-            </Section>
-
-            {/* 5. Call to Action */}
-            <Section>
-                <div className="glass-card" style={{ padding: '60px', textAlign: 'center', overflow: 'hidden', position: 'relative' }}>
-                    <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(45deg, transparent, rgba(56, 189, 248, 0.1), transparent)' }} />
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '20px' }}>Ready to Scale?</h2>
-                    <p style={{ color: 'var(--text-secondary)', marginBottom: '30px', fontSize: '1.2rem' }}>Let's build something extraordinary together.</p>
-                    <Link to="/contact" className="btn btn-primary">Get in Touch</Link>
+                            <h3 style={{ fontSize: '1.25rem', marginBottom: '10px' }}>{s.title}</h3>
+                            <p style={{ color: 'var(--text-secondary)' }}>{s.desc}</p>
+                        </div>
+                    ))}
                 </div>
             </Section>
         </div>
