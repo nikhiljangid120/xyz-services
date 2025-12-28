@@ -7,6 +7,7 @@ console.log('--- XYZ Backend Verification ---\n');
 const dataDir = path.join(__dirname, 'data');
 
 const dbPath = path.join(dataDir, 'contacts.sqlite');
+
 console.log(`Checking SQLite Database at: ${dbPath}`);
 const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READONLY, (err) => {
     if (err) {
