@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { sqliteDb, nedb } = require('../config/database'); 
-
 // POST /api/contact
 router.post('/', (req, res) => {
     const { name, email, subject, message } = req.body;
