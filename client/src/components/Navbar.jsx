@@ -37,14 +37,13 @@ const Navbar = () => {
             borderBottom: scrolled ? '1px solid var(--card-border)' : 'none',
             backdropFilter: scrolled ? 'blur(8px)' : 'none',
             transition: 'all 0.3s ease',
-            color: 'var(--nav-text)' // Explicitly set text color
+            color: 'var(--nav-text)'
         }}>
             <div className="container" style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Link to="/" style={{ fontSize: '1.4rem', fontWeight: '700', color: 'var(--nav-text)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                     XYZ<span style={{ color: 'var(--accent-primary)' }}>Tech</span>
                 </Link>
 
-                {/* Desktop Nav */}
                 <div className="desktop-nav" style={{ display: 'flex', gap: '30px', alignItems: 'center' }}>
                     {navLinks.map((link) => (
                         <Link
@@ -64,7 +63,6 @@ const Navbar = () => {
                     <Link to="/contact" className="btn btn-primary" style={{ padding: '8px 20px', fontSize: '0.9rem' }}>Get Started</Link>
                 </div>
 
-                {/* Mobile Toggle & Theme */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }} className="mobile-controls">
                     <button onClick={toggleTheme} style={{ color: 'var(--nav-text)', padding: '8px' }}>
                         {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
@@ -75,7 +73,6 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Mobile Menu */}
             {isOpen && (
                 <div style={{
                     position: 'absolute', top: '70px', left: 0, right: 0,

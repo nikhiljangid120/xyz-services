@@ -12,7 +12,6 @@ const Section = ({ children, bg = 'transparent' }) => (
 const Home = () => {
     return (
         <div className="home-page">
-            {/* 1. Hero Section with Digital Visualization (No Image) */}
             <section style={{ paddingTop: '140px', paddingBottom: '100px', background: 'linear-gradient(to bottom, var(--bg-accent), var(--bg-primary))' }}>
                 <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
                     <motion.div
@@ -35,24 +34,20 @@ const Home = () => {
                         </div>
                     </motion.div>
 
-                    {/* Animated Graphic Replacement */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8 }}
                         style={{ position: 'relative', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                     >
-                        {/* Abstract Orbiting Network */}
                         <div style={{ position: 'absolute', width: '300px', height: '300px', borderRadius: '50%', border: '1px dashed var(--card-border)' }} />
                         <div style={{ position: 'absolute', width: '450px', height: '450px', borderRadius: '50%', border: '1px solid var(--bg-accent)' }} />
 
-                        {/* Central Hub */}
                         <div className="clean-card" style={{ zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', boxShadow: 'var(--shadow-lg)' }}>
                             <Globe size={48} color="var(--accent-primary)" />
                             <span style={{ fontWeight: 'bold' }}>Global Core</span>
                         </div>
 
-                        {/* Floating Nodes */}
                         <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} style={{ position: 'absolute', top: '20%', left: '10%' }} className="clean-card">
                             <Server size={24} color="var(--text-secondary)" />
                         </motion.div>
@@ -72,7 +67,6 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* 2. Services Grid (Unchanged) */}
             <Section>
                 <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 60px' }}>
                     <h2 style={{ fontSize: '2.5rem', marginBottom: '15px' }}>Tailored Solutions</h2>

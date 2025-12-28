@@ -25,9 +25,7 @@ const About = () => {
                         </p>
                     </div>
 
-                    {/* Replaced Image with a Styled "Mission Card" */}
                     <div className="clean-card" style={{ padding: '60px', background: 'linear-gradient(135deg, var(--bg-secondary), var(--bg-primary))', position: 'relative', overflow: 'hidden' }}>
-                        {/* Decorative Background Icon */}
                         <Target size={300} style={{ position: 'absolute', bottom: '-50px', right: '-50px', opacity: 0.05, color: 'var(--text-primary)' }} />
 
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', position: 'relative' }}>

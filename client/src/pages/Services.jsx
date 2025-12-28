@@ -19,7 +19,6 @@ const Services = () => {
                 subtitle="End-to-end technology services designed to accelerate your growth."
             />
 
-            {/* 1. Services Grid */}
             <Section>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
                     {services.map((s, i) => (
@@ -32,7 +31,6 @@ const Services = () => {
                 </div>
             </Section>
 
-            {/* 2. Process / Workflow */}
             <Section bg="var(--bg-secondary)">
                 <h2 style={{ textAlign: 'center', marginBottom: '60px' }}>Our Workflow</h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
@@ -51,7 +49,6 @@ const Services = () => {
                 </div>
             </Section>
 
-            {/* 3. Tech Stack */}
             <Section>
                 <h2 style={{ textAlign: 'center', marginBottom: '40px' }}>Technologies We Use</h2>
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px' }}>

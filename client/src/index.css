@@ -1,6 +1,5 @@
 @import './global.css';
 
-/* Micro-interactions */
 .hover-lift {
   transition: transform var(--transition-fast);
 }
@@ -16,7 +15,6 @@
   border-radius: var(--radius-md);
 }
 
-/* Text Gradients */
 .text-gradient {
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   -webkit-background-clip: text;

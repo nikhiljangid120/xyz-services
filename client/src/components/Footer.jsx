@@ -7,7 +7,6 @@ const Footer = () => {
         <footer style={{ background: 'var(--bg-secondary)', paddingTop: '60px', paddingBottom: '30px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
             <div className="container">
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px', marginBottom: '40px' }}>
-                    {/* Brand */}
                     <div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '20px' }}>
                             <Rocket color="var(--accent-primary)" size={24} />
@@ -18,7 +17,6 @@ const Footer = () => {
                         </p>
                     </div>
 
-                    {/* Links */}
                     <div>
                         <h4 style={{ marginBottom: '20px' }}>Company</h4>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', color: 'var(--text-secondary)' }}>
@@ -29,7 +27,6 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* Contact Info */}
                     <div>
                         <h4 style={{ marginBottom: '20px' }}>Connect</h4>
                         <div style={{ display: 'flex', gap: '15px' }}>

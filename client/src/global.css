@@ -1,5 +1,4 @@
 :root {
-  /* High Contrast Light Theme */
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
   --bg-accent: #eff6ff;
@@ -28,7 +27,6 @@
 
 [data-theme='dark'] {
   --bg-primary: #020617;
-  /* Darker background */
   --bg-secondary: #0f172a;
   --bg-accent: #1e293b;
 
@@ -87,7 +85,6 @@ button {
   font-family: inherit;
 }
 
-/* Utilities */
 .container {
   max-width: 1200px;
   margin: 0 auto;
